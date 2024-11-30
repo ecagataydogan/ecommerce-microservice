@@ -1,5 +1,7 @@
 package dev.ecagataydogan.authservice.user.service;
 
+import dev.ecagataydogan.authservice.common.exception.BusinessException;
+import dev.ecagataydogan.authservice.common.exception.ErrorCode;
 import dev.ecagataydogan.authservice.user.entity.User;
 import dev.ecagataydogan.authservice.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,6 @@ public class UserService {
 
     public User getUser(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new BusinessException(ErrorCode.not_found, "User not found"));
     }
 }

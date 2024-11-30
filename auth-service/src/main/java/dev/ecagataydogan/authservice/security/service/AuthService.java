@@ -1,5 +1,7 @@
 package dev.ecagataydogan.authservice.security.service;
 
+import dev.ecagataydogan.authservice.common.exception.BusinessException;
+import dev.ecagataydogan.authservice.common.exception.ErrorCode;
 import dev.ecagataydogan.authservice.security.dto.request.LoginRequest;
 import dev.ecagataydogan.authservice.security.dto.request.RefreshTokenRequest;
 import dev.ecagataydogan.authservice.security.dto.request.RegisterRequest;
@@ -30,7 +32,7 @@ public class AuthService {
 
     public void register(RegisterRequest registerRequest) {
         if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
-            throw new RuntimeException("User already exists");
+            throw new BusinessException(ErrorCode.account_already_exists, "User already exists");
         }
         User user = new User();
         user.setEmail(registerRequest.getEmail());

@@ -1,5 +1,7 @@
 package dev.ecagataydogan.authservice.security.service;
 
+import dev.ecagataydogan.authservice.common.exception.BusinessException;
+import dev.ecagataydogan.authservice.common.exception.ErrorCode;
 import dev.ecagataydogan.authservice.security.config.JwtConfig;
 import dev.ecagataydogan.authservice.security.entity.RefreshToken;
 import dev.ecagataydogan.authservice.security.repository.RefreshTokenRepository;
@@ -26,7 +28,7 @@ public class RefreshTokenService {
                 .map(this::verifyExpiration)
                 .map(RefreshToken::getUser)
                 .map(user -> accessTokenService.generateToken(user.getEmail()))
-                .orElseThrow(() -> new RuntimeException("Refresh token does not exist."));
+                .orElseThrow(() -> new BusinessException(ErrorCode.not_found, "Refresh token does not exist."));
     }
 
     public RefreshToken createRefreshToken(Long userId) {
@@ -44,7 +46,7 @@ public class RefreshTokenService {
     private RefreshToken verifyExpiration(RefreshToken token) {
         if (token.getExpiryDate().isBefore(LocalDateTime.now())) {
             refreshTokenRepository.delete(token);
-            throw new RuntimeException("Refresh token was expired. Please make a new login request.");
+            throw new BusinessException(ErrorCode.validation, "Refresh token was expired. Please make a new login request.");
 
         }
         return token;
