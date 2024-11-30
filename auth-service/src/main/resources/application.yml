@@ -3,4 +3,5 @@ spring:
   profiles:
     include: >
       db,
-      jwt
+      jwt,
+      server
