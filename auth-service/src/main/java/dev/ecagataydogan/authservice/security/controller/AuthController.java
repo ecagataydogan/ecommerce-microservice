@@ -1,6 +1,10 @@
 package dev.ecagataydogan.authservice.security.controller;
 
+import dev.ecagataydogan.authservice.security.dto.request.LoginRequest;
+import dev.ecagataydogan.authservice.security.dto.request.RefreshTokenRequest;
 import dev.ecagataydogan.authservice.security.dto.request.RegisterRequest;
+import dev.ecagataydogan.authservice.security.dto.response.RefreshTokenResponse;
+import dev.ecagataydogan.authservice.security.dto.response.VerifyLoginResponse;
 import dev.ecagataydogan.authservice.security.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,4 +23,13 @@ public class AuthController {
         authService.register(registerRequest);
     }
 
+    @PostMapping("/login")
+    public VerifyLoginResponse login(@Valid @RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
+    }
+
+    @PostMapping("/refresh-token")
+    public RefreshTokenResponse refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return authService.refreshToken(refreshTokenRequest);
+    }
 }
