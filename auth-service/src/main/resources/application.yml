@@ -1,0 +1,6 @@
+debug: false
+spring:
+  profiles:
+    include: >
+      db,
+      jwt
