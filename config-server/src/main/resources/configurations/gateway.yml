@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: client-service
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/v1/customers/**
+          filters:
+            - AuthenticationFilter
+
+        - id: auth-service
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/v1/auth/**
+
+server:
+  port: 8080
+
+app:
+  jwtSecret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  jwtExpirationMs: 3600000000
+  jwtRefreshExpirationMs: 86400000000
