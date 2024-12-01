@@ -1,6 +1,5 @@
-debug: false
 spring:
-  profiles:
-    include: >
-      server,
-      jwt
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
