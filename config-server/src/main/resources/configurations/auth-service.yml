@@ -1,0 +1,33 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # create, create-drop, update, validate, none
+    generate-ddl: false
+    show-sql: false
+    defer-datasource-initialization: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  #      javax:
+  #        persistence:
+  #          schema-generation:
+  #            create-source: metadata
+  #            scripts:
+  #              action: create
+  #              create-target: create.sql
+  sql:
+    init:
+      mode: never
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db
+    username: postgres
+    password: 123456
+
+app:
+  jwtSecret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  jwtExpirationMs: 3600000000
+  jwtRefreshExpirationMs: 86400000000
+
+server:
+  port: 8090
