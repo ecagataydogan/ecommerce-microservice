@@ -4,7 +4,7 @@ spring:
       ddl-auto: create-drop # create, create-drop, update, validate, none
     generate-ddl: false
     show-sql: false
-    defer-datasource-initialization: false
+    defer-datasource-initialization: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -17,7 +17,7 @@ spring:
   #              create-target: create.sql
   sql:
     init:
-      mode: never
+      mode: always
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/productdb
