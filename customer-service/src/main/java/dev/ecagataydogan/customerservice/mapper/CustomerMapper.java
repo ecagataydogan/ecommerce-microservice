@@ -1,6 +1,7 @@
 package dev.ecagataydogan.customerservice.mapper;
 
 import dev.ecagataydogan.customerservice.dto.request.OnboardRequest;
+import dev.ecagataydogan.customerservice.dto.response.CustomerResponse;
 import dev.ecagataydogan.customerservice.entity.Customer;
 
 public class CustomerMapper {
@@ -16,5 +17,15 @@ public class CustomerMapper {
         customer.setEmail(onboardRequest.getEmail());
         customer.setAddress(AddressMapper.fromRequest(onboardRequest.getAddress()));
         return customer;
+    }
+
+    public static CustomerResponse toResponse(Customer customer) {
+        return CustomerResponse.builder()
+                .id(customer.getId())
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .email(customer.getEmail())
+                .address(AddressMapper.toResponse(customer.getAddress()))
+                .build();
     }
 }

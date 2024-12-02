@@ -1,6 +1,7 @@
 package dev.ecagataydogan.customerservice.service;
 
 import dev.ecagataydogan.customerservice.dto.request.OnboardRequest;
+import dev.ecagataydogan.customerservice.dto.response.CustomerResponse;
 import dev.ecagataydogan.customerservice.entity.Customer;
 import dev.ecagataydogan.customerservice.exception.BusinessException;
 import dev.ecagataydogan.customerservice.exception.ErrorCode;
@@ -27,5 +28,11 @@ public class CustomerService {
         }
         Customer customer = CustomerMapper.fromRequest(userId, onboardRequest);
         customerRepository.save(customer);
+    }
+
+    public CustomerResponse getCustomer(Long userId) {
+        return customerRepository.findByUserId(userId)
+                .map(CustomerMapper::toResponse)
+                .orElseThrow(() -> new BusinessException(ErrorCode.not_found, "Customer not found"));
     }
 }
