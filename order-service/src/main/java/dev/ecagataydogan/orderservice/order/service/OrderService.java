@@ -10,6 +10,8 @@ import dev.ecagataydogan.orderservice.order.entity.OrderLine;
 import dev.ecagataydogan.orderservice.order.mapper.OrderLineMapper;
 import dev.ecagataydogan.orderservice.order.mapper.OrderMapper;
 import dev.ecagataydogan.orderservice.order.repository.OrderRepository;
+import dev.ecagataydogan.orderservice.payment.PaymentClient;
+import dev.ecagataydogan.orderservice.payment.PaymentRequest;
 import dev.ecagataydogan.orderservice.product.ProductClient;
 import dev.ecagataydogan.orderservice.product.PurchaseResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private final PaymentClient paymentClient;
 
     public void createOrder(Long userId, OrderRequest orderRequest) {
         try {
@@ -40,7 +43,13 @@ public class OrderService {
             order.setOrderLines(orderLines);
             orderRepository.save(order);
 
-            // TODO: payment service implementation
+            PaymentRequest paymentRequest = PaymentRequest.builder()
+                    .amount(calculateTotalAmount(orderLines))
+                    .paymentMethod(orderRequest.getPaymentMethod())
+                    .orderId(order.getId())
+                    .build();
+            paymentClient.createPayment(paymentRequest);
+
             // TODO: kafka implementation
 
             // TODO: exception handling must improve
@@ -65,5 +74,11 @@ public class OrderService {
                     return OrderLineMapper.toEntity(order, product, amount);
                 })
                 .toList();
+    }
+
+    private BigDecimal calculateTotalAmount(List<OrderLine> orderLines) {
+        return orderLines.stream()
+                .map(OrderLine::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
