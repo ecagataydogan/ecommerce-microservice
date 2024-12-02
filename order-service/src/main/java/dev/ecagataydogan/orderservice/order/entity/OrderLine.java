@@ -3,6 +3,8 @@ package dev.ecagataydogan.orderservice.order.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -24,4 +26,7 @@ public class OrderLine {
 
     @Column(name = "quantity")
     private double quantity;
+
+    @Column(name = "amount")
+    private BigDecimal amount;
 }
