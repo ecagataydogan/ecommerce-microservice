@@ -11,6 +11,6 @@ import java.util.List;
 )
 public interface ProductClient {
 
-    @PostMapping
+    @PostMapping("/purchase")
     List<PurchaseResponse> purchaseProducts(List<PurchaseRequest> requestBody);
 }
