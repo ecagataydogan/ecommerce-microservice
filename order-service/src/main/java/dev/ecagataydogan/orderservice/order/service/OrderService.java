@@ -4,6 +4,8 @@ import dev.ecagataydogan.orderservice.customer.CustomerClient;
 import dev.ecagataydogan.orderservice.customer.CustomerResponse;
 import dev.ecagataydogan.orderservice.exception.BusinessException;
 import dev.ecagataydogan.orderservice.exception.ErrorCode;
+import dev.ecagataydogan.orderservice.kafka.OrderConfirmation;
+import dev.ecagataydogan.orderservice.kafka.OrderProducer;
 import dev.ecagataydogan.orderservice.order.dto.request.OrderRequest;
 import dev.ecagataydogan.orderservice.order.entity.Order;
 import dev.ecagataydogan.orderservice.order.entity.OrderLine;
@@ -32,6 +34,7 @@ public class OrderService {
     private final CustomerClient customerClient;
     private final ProductClient productClient;
     private final PaymentClient paymentClient;
+    private final OrderProducer orderProducer;
 
     public void createOrder(Long userId, OrderRequest orderRequest) {
         try {
@@ -50,7 +53,13 @@ public class OrderService {
                     .build();
             paymentClient.createPayment(paymentRequest);
 
-            // TODO: kafka implementation
+            OrderConfirmation orderConfirmation = OrderConfirmation.builder()
+                    .totalAmount(calculateTotalAmount(orderLines))
+                    .paymentMethod(orderRequest.getPaymentMethod())
+                    .customer(customer)
+                    .products(purchasedProducts)
+                    .build();
+            orderProducer.sendOrderConfirmation(orderConfirmation);
 
             // TODO: exception handling must improve
             /*
