@@ -21,6 +21,14 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: order-service
+          uri: http://localhost:8093
+          predicates:
+            - Path=/api/v1/orders/**
+          filters:
+            - AuthenticationFilter
+
+
 server:
   port: 8080
 
