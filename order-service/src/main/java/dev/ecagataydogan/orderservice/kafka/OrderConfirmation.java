@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class OrderConfirmation {
 
+    private Long orderId;
     private BigDecimal totalAmount;
     private PaymentMethod paymentMethod;
     private CustomerResponse customer;

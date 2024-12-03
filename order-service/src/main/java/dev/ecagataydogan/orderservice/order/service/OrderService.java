@@ -54,6 +54,7 @@ public class OrderService {
             paymentClient.createPayment(paymentRequest);
 
             OrderConfirmation orderConfirmation = OrderConfirmation.builder()
+                    .orderId(order.getId())
                     .totalAmount(calculateTotalAmount(orderLines))
                     .paymentMethod(orderRequest.getPaymentMethod())
                     .customer(customer)
