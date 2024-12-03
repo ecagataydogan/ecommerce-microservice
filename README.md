@@ -1,9 +1,11 @@
 ## Table of Contents
-1. [About This Project](#About-This-Project)
-1. [Technologies Used](#technologies-used)
-2. [Architecture](#architecture)
-3. [API Documentation](#api-documentation)
-4. [Testing](#testing)
+
+1. [About This Project](#about-this-project)
+2. [Technologies Used](#technologies-used)
+3. [Architecture](#architecture)
+4. [API Documentation](#api-documentation)
+5. [Screenshots](#screenshots)
+
 
 ## About This Project
 
@@ -29,7 +31,8 @@ This project leverages the following technologies:
 
 The architecture of this project is built around microservices. Below is an overview of the key components and their roles:
 
-![Architecture Diagram](path/to/your/image.png) <!-- Replace with your actual image path -->
+![ecommerce-microservice drawio](https://github.com/user-attachments/assets/00574f62-4e88-41cd-baaa-1474d808fb38)
+ 
 
 ### Components
 
@@ -290,4 +293,15 @@ Get all products with available quantity, price, category etc.
 
 **Success Response:**
 Status Code: 200
+
+
+## Screenshots
+
+Notification:
+
+![image](https://github.com/user-attachments/assets/46cba04f-64b5-4664-89a7-1295f3d3580b)
+
+Zipkin:
+
+![Screen Shot 2024-12-03 at 23 32 00 PM](https://github.com/user-attachments/assets/09e5e337-79fd-44ae-86b3-004bb632eb15)
 
