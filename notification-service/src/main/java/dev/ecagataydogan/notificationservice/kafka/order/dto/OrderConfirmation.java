@@ -1,6 +1,6 @@
-package dev.ecagataydogan.notificationservice.kafka.order;
+package dev.ecagataydogan.notificationservice.kafka.order.dto;
 
-import dev.ecagataydogan.notificationservice.kafka.payment.PaymentMethod;
+import dev.ecagataydogan.notificationservice.kafka.payment.dto.PaymentMethod;
 import lombok.Data;
 
 import java.math.BigDecimal;

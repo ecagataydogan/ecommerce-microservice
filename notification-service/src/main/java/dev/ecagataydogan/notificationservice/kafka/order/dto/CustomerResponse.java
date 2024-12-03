@@ -1,4 +1,4 @@
-package dev.ecagataydogan.notificationservice.kafka.order;
+package dev.ecagataydogan.notificationservice.kafka.order.dto;
 
 import lombok.Data;
 

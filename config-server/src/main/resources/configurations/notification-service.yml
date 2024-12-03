@@ -8,6 +8,6 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: orderConfirmation:dev.ecagataydogan.notificationservice.kafka.order.OrderConfirmation,paymentConfirmation:dev.ecagataydogan.notificationservice.kafka.payment.PaymentConfirmation
+        spring.json.type.mapping: orderConfirmation:dev.ecagataydogan.notificationservice.kafka.order.dto.OrderConfirmation,paymentConfirmation:dev.ecagataydogan.notificationservice.kafka.payment.dto.PaymentConfirmation
 server:
   port: 8095

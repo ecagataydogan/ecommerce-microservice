@@ -1,4 +1,4 @@
-package dev.ecagataydogan.notificationservice.kafka.payment;
+package dev.ecagataydogan.notificationservice.kafka.payment.dto;
 
 public enum PaymentMethod {
 
