@@ -1,5 +1,6 @@
 package dev.ecagataydogan.notificationservice.kafka.payment;
 
+import dev.ecagataydogan.notificationservice.kafka.payment.dto.PaymentConfirmation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
