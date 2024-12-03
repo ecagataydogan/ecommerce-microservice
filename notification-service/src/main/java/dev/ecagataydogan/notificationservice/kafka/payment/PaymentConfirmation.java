@@ -4,10 +4,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@Builder
-@ToString
+@Data
 public class PaymentConfirmation {
 
     private Long paymentId;
